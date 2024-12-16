@@ -15,22 +15,28 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: auto;
         }
         img {
             max-width: 100%;
             max-height: 100%;
+            transform-origin: center center;
         }
     </style>
 </head>
 <body>
     <div id="container">
-        <img src="https://i.imgur.com/y8qruLS.jpeg" alt="画像" id="image">
+        <img src="https://i.imgur.com/UNcMgUH.png" alt="画像" id="image">
     </div>
     <script>
         let img = document.getElementById('image');
         let container = document.getElementById('container');
         let scale = 1;
         let startDistance = 0;
+        let startX = 0;
+        let startY = 0;
+        let translateX = 0;
+        let translateY = 0;
 
         container.addEventListener('touchstart', function(e) {
             if (e.touches.length === 2) {
@@ -38,6 +44,9 @@
                     e.touches[0].pageX - e.touches[1].pageX,
                     e.touches[0].pageY - e.touches[1].pageY
                 );
+            } else if (e.touches.length === 1) {
+                startX = e.touches[0].pageX - translateX;
+                startY = e.touches[0].pageY - translateY;
             }
         });
 
@@ -49,7 +58,11 @@
                 );
                 scale *= currentDistance / startDistance;
                 startDistance = currentDistance;
-                img.style.transform = `scale(${scale})`;
+                img.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
+            } else if (e.touches.length === 1) {
+                translateX = e.touches[0].pageX - startX;
+                translateY = e.touches[0].pageY - startY;
+                img.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
             }
         });
     </script>
