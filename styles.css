@@ -12,7 +12,7 @@ body {
 
 h1 {
     margin: 20px 0;
-    font-size: 0.2em; /* タイトルの大きさを小さくする */
+    font-size: 6em; /* タイトルの大きさを3倍にする */
 }
 
 img {
@@ -20,5 +20,4 @@ img {
     height: auto;
     object-fit: contain;
     max-width: 100%;
-    transform-origin: center center;
 }
