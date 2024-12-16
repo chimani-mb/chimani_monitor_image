@@ -8,6 +8,8 @@ body {
     min-height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
+    transform: scale(1); /* 初期スケールを設定 */
+    transform-origin: top left; /* スケールの基準点を設定 */
 }
 
 h1 {
@@ -20,5 +22,4 @@ img {
     height: auto;
     object-fit: contain;
     max-width: 100%;
-    transform-origin: center center;
 }
