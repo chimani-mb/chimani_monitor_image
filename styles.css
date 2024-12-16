@@ -11,10 +11,12 @@ body {
 
 h1 {
     margin-bottom: 20px;
+    font-size: 2em;
 }
 
 img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     object-fit: contain;
+    transform-origin: center center;
 }
