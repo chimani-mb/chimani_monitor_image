@@ -10,6 +10,7 @@
             const zoomLevel = window.devicePixelRatio;
             const img = document.querySelector('img');
             img.style.transform = `scale(${zoomLevel})`;
+            img.style.transformOrigin = 'top left'; // 左上を基準に拡大・縮小
         }
 
         window.addEventListener('resize', adjustImageSize);
