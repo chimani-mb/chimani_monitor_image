@@ -2,74 +2,11 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            overflow: hidden;
-        }
-        #container {
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            touch-action: none;
-        }
-        img {
-            max-width: 100%;
-            max-height: 100%;
-            transform-origin: center center;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像表示サイト</title>
 </head>
 <body>
-    <div id="container">
-        <img src="https://i.imgur.com/y8qruLS.jpeg" alt="画像" id="image">
-    </div>
-    <script>
-        let img = document.getElementById('image');
-        let container = document.getElementById('container');
-        let scale = 1;
-        let startDistance = 0;
-        let startX = 0;
-        let startY = 0;
-        let translateX = 0;
-        let translateY = 0;
-
-        container.addEventListener('touchstart', function(e) {
-            if (e.touches.length === 2) {
-                startDistance = Math.hypot(
-                    e.touches[0].pageX - e.touches[1].pageX,
-                    e.touches[0].pageY - e.touches[1].pageY
-                );
-            } else if (e.touches.length === 1) {
-                startX = e.touches[0].pageX - translateX;
-                startY = e.touches[0].pageY - translateY;
-            }
-        });
-
-        container.addEventListener('touchmove', function(e) {
-            if (e.touches.length === 2) {
-                let currentDistance = Math.hypot(
-                    e.touches[0].pageX - e.touches[1].pageX,
-                    e.touches[0].pageY - e.touches[1].pageY
-                );
-                scale *= currentDistance / startDistance;
-                startDistance = currentDistance;
-                img.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
-            } else if (e.touches.length === 1) {
-                translateX = e.touches[0].pageX - startX;
-                translateY = e.touches[0].pageY - startY;
-                img.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
-            }
-        });
-
-        container.addEventListener('wheel', function(e) {
-            e.preventDefault();
-            scale += e.deltaY * -0.01;
-            scale = Math.min(Math.max(.125, scale), 4);
-            img.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
-        });
-    </script>
+    <h1>画像表示サイト</h1>
+    <img src="https://i.imgur.com/y8qruLS.jpeg" alt="表示する画像">
 </body>
 </html>
