@@ -13,7 +13,10 @@
         }
 
         window.addEventListener('resize', adjustImageSize);
-        window.addEventListener('load', adjustImageSize);
+        window.addEventListener('load', () => {
+            adjustImageSize();
+            window.scrollTo(0, 0); // ページを左上にスクロール
+        });
     </script>
 </head>
 <body>
